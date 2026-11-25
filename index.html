@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#081B4F">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Toshkent poygasi</title>
+<meta name="description" content="Toshkent markazidagi haqiqiy ko‘chalarda 3D poyga: Spark va Cobalt.">
+<link rel="preload" href="fonts/barlow-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="c"></canvas>
+
+<div id="loading" class="screen show">
+  <div class="logo"><span class="w">Toshkent</span><span class="y">poygasi</span></div>
+  <div class="bar"><i id="loadbar"></i></div>
+  <div class="small" id="loadtxt">Yuklanmoqda…</div>
+</div>
+
+<div id="menu" class="screen">
+  <div class="panel left">
+    <div class="logo"><span class="w">Toshkent</span><span class="y">poygasi</span></div>
+    <button class="btn yellow big" id="b-start">Boshlash</button>
+    <button class="btn blue" id="b-cars">Mashina tanlash</button>
+    <button class="btn blue" id="b-settings">Sozlamalar</button>
+    <div class="record" id="record"></div>
+  </div>
+  <div class="menu-tag" id="menu-car"></div>
+</div>
+
+<div id="cars" class="screen dim">
+  <div class="topbar">
+    <button class="back" id="b-cars-back" aria-label="Orqaga">←</button>
+    <h1 class="title"><span class="w">Mashina</span> <span class="y">tanlash</span></h1>
+  </div>
+  <div class="cards" id="cards"></div>
+  <button class="btn yellow wide" id="b-cars-ok">Tasdiqlash</button>
+</div>
+
+<div id="settings" class="screen dim">
+  <div class="topbar">
+    <button class="back" id="b-set-back" aria-label="Orqaga">←</button>
+    <h1 class="title"><span class="y">Sozlamalar</span></h1>
+  </div>
+  <div class="setlist" id="setlist"></div>
+  <div class="small note" id="setnote"></div>
+</div>
+
+<div id="hud" class="hidden">
+  <div class="pills">
+    <button class="pill pause" id="b-pause" aria-label="Pauza">❚❚</button>
+    <div class="pill"><span>O‘rin</span><b id="h-pos">1/2</b></div>
+    <div class="pill"><span>Aylana</span><b id="h-lap">1/2</b></div>
+    <div class="pill"><span>Vaqt</span><b id="h-time" class="mono">00:00.00</b></div>
+  </div>
+  <canvas id="minimap" width="220" height="150"></canvas>
+  <canvas id="speedo" width="220" height="220"></canvas>
+  <div class="ctl left-ctl">
+    <button class="ctl-btn" id="c-left" aria-label="Chapga">◀</button>
+    <button class="ctl-btn" id="c-right" aria-label="O‘ngga">▶</button>
+  </div>
+  <div class="ctl right-ctl">
+    <button class="ctl-btn brake" id="c-brake">Tormoz</button>
+    <button class="ctl-btn gas" id="c-gas">Gaz</button>
+  </div>
+  <div id="wrongway" class="banner hidden">Teskari yo‘nalish!</div>
+  <div id="lapmsg" class="banner hidden"></div>
+</div>
+
+<div id="countdown" class="hidden"></div>
+
+<div id="pause" class="screen dim">
+  <div class="panel center">
+    <h1 class="title"><span class="y">Pauza</span></h1>
+    <button class="btn yellow" id="b-resume">Davom etish</button>
+    <button class="btn blue" id="b-restart">Qayta boshlash</button>
+    <button class="btn blue" id="b-tomenu">Menyu</button>
+  </div>
+</div>
+
+<div id="finish" class="screen">
+  <div class="panel left">
+    <div class="trophy" id="f-icon">🏆</div>
+    <div class="f-head" id="f-head">Siz yutdingiz!</div>
+    <div class="f-place" id="f-place">1-o‘rin</div>
+    <hr>
+    <div class="small">Yakuniy vaqt</div>
+    <div class="f-time mono" id="f-time">00:00.00</div>
+    <div class="small" id="f-best"></div>
+    <hr>
+    <button class="btn yellow" id="b-again">Qayta o‘ynash</button>
+    <button class="btn blue" id="b-fmenu">Menyu</button>
+  </div>
+  <div id="confetti"></div>
+</div>
+
+<div id="rotate">
+  <div class="phone">📱</div>
+  <div>Telefonni yotiq holatga o‘giring</div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
